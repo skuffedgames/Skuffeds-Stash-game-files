@@ -1,0 +1,38 @@
+# GitHub URL Converter
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub URL Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub URL Converter</h1>
+    <label for="githubUrls">Enter GitHub File URLs:</label><br>
+    <input type="text" id="githubUrls" placeholder="Enter URLs separated by commas"><br>
+    <button onclick="convertUrls()">Convert</button><br>
+    <label for="outputUrls">Converted URLs:</label><br>
+    <input type="text" id="outputUrls" readonly>
+
+    <script>
+        function convertUrls() {
+            const input = document.getElementById('githubUrls').value;
+            const urls = input.split(',').map(url => url.trim());
+            const convertedUrls = urls.map(url => url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/'));
+            document.getElementById('outputUrls').value = convertedUrls.join(', ');
+        }
+    </script>
+</body>
+</html>
